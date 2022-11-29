@@ -1,24 +1,18 @@
-import React from 'react';
-import Navbar from '../topnav/Navbar';
+import React from "react";
+import Navbar from "../topnav/Navbar";
 import "./Sidenav.css";
-const  Question =()=> {
+const Question = () => {
   return (
     <div>
-     <Navbar/>
-        <div className="qiuz">
-            <p>post a question</p>
-            <textarea
-            className="tex"
-            // id=""
-            // name=""
-            // value={postQuiestion}
-            // onChange={onDescriptionChanged}
-            placeholder="post your question here"
-          />
-        </div>
-       
+      <Navbar />
+      <div className="qiuz">
+        <p>post a question</p>
+        <textarea name="" id="" cols="30" className="tex" placeholder="please input your question here"></textarea>
+        
+        <button className="btn">submit</button>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default Question;
