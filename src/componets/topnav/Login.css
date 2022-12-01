@@ -23,10 +23,10 @@
     border: none;
     border-radius: 5px;
     width: 400px;
-    height: 24px;
+    height: 32px;
 }
 button{
-    width: 80%;
+    width: 65%;
     height: 24px;
     cursor: pointer;
     color: white;
