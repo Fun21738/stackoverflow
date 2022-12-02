@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import Navbar from "./Navbar";
 import "./Home.css";
-import { CommentPost, likePost, dislikePostAction } from "../Actions/Actions";
+// import { CommentPost, likePost, dislikePostAction } from "../Actions/Actions";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { RiHeart3Line } from "react-icons/ri";
-import { HiThumbDown } from "react-icons/hi";
-// import { useSelector } from 'react-redux';
-import { FaRegCommentDots } from "react-icons/fa";
+import PostAnswer from "./PostAnswer";
+// import { RiHeart3Line } from "react-icons/ri";
+// import { HiThumbDown } from "react-icons/hi";
+// import { FaRegCommentDots } from "react-icons/fa";
 import { fetchPosts } from "../features/Posts/postSlice";
 
 
@@ -19,17 +20,21 @@ function Home() {
   console.log(posts);
   const dispatch = useDispatch();
 
-  const handleCommentPost = (id) => {
-    dispatch(CommentPost(id));
-  };
+  const [OpenModal,setOpenModal] = useState (false)
+  
+  
 
-  const handleDisikePost = (id) => {
-    dispatch(dislikePostAction(id));
-  };
+  // const handleCommentPost = (id) => {
+  //   dispatch(CommentPost(id));
+  // };
 
-  const handleLikePost = (id) => {
-    dispatch(likePost(id));
-  };
+  // const handleDisikePost = (id) => {
+  //   dispatch(dislikePostAction(id));
+  // };
+
+  // const handleLikePost = (id) => {
+  //   dispatch(likePost(id));
+  // };
 
   useEffect(() => {
     dispatch(fetchPosts());
@@ -54,25 +59,43 @@ function Home() {
         </div>
 
         <div className="main">
-          <h3 className="postee">Posted questions and answers !! </h3>
+          <h3 className="posty">Posted questions and answers !! </h3>
 
           {posts?.map((post) => {
             return (
               <div className="mag" key={post.id}>
-                    <h3 className="postee">posted question</h3>
+                <div className="heady">
+                    <h3 className="postee">posted question </h3>
+                    <p className="posty">answers <span>{0}</span></p>
+                </div>
+                    
                         {post.postQuestion}
                          <div className="icons">
-                            <RiHeart3Line onClick={() => handleLikePost(post?.id)}/>
+                          <button className="btn" onClick={()=>setOpenModal(true)}>post answer</button>
+                          <button className="btn">delete post</button>
+                          <div className="mode">
+                          <PostAnswer open={OpenModal} onClose={()=>setOpenModal(false)}/>
+                          </div>
+                         
+
+                         
+
+                          {/* <div className="ico">
+                          <RiHeart3Line onClick={() => handleLikePost(post?.id)}/>
                             <HiThumbDown onClick={() => handleDisikePost(post?.id)}/>
                             <FaRegCommentDots onClick={() => handleCommentPost(post?.id)} />
+                          </div> */}
+                            
                          </div>
               </div>    
             );
              })}
+
         </div>
       </div>
+
     </div>
   );
 }
 
-export default Home;
+export default Home

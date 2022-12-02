@@ -21,9 +21,11 @@
 .one{
     background-color: #f0f0f0cb;
     border: none;
+    /* border: 1px solid red; */
     border-radius: 5px;
     width: 400px;
     height: 32px;
+    margin-top:20px;
 }
 button{
     width: 65%;
@@ -36,4 +38,7 @@ button{
 }
 .hd{
     margin-top: -20px;
+}
+.bt{
+    margin-top: 16px;
 }

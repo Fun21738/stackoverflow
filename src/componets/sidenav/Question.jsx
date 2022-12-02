@@ -1,5 +1,4 @@
 // import React from "react";
-// import React, { useState } from "react";
 import Navbar from "../topnav/Navbar";
 import { useDispatch } from "react-redux";
 import "./Sidenav.css";
@@ -24,12 +23,15 @@ const Question = () => {
 //     // setQuestion("");
     
 // };
+const answers=['tdthdht']
 
 const handleAddPost=(e)=>{
   e.preventDefault()
   const id= Math.ceil(Math.random()*1000000)
-  const newPost={...QuestionForm, id}
-  dispatch(createNewPost(newPost))
+  // const newPost={...QuestionForm, id, answers: []};
+  const { quiz } = QuestionForm;
+  // console.log(newPost)
+  dispatch(createNewPost({ id, quiz, answers}))
   // dispatch(fetchPosts())
 }
 
@@ -53,6 +55,7 @@ const HandlerChange=(e)=>{
          ></textarea>
         
         <button className="btn" onClick={handleAddPost}>Post it</button>
+        
       </div>
     </div>
   );

@@ -12,18 +12,21 @@ const initialState = {
         // {
         //     name: 'Jose3'
         // },
-    ]
+    ],
+    // answer: {},
 };
 
 
 const url="https://stack-28e5a-default-rtdb.firebaseio.com/stack.json"
 
 export const createNewPost = createAsyncThunk('posts/createNewPost',
-    async (newPost) => {
+    async (newPost, { dispatch }) => {
+        console.log('new', newPost);
         try {
             // console.log(res);
-            const res = await axios.post(url, newPost)
-            return res.data
+            await axios.post("https://stack-28e5a-default-rtdb.firebaseio.com/stack.json", newPost)
+            // dispatch(fetchPosts())
+            // return res.data
         } catch (error) {
             console.log(error)
         }
@@ -40,7 +43,8 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts',
                 dataArray.push({
         
                   id: key,
-                  postQuestion: response.data[key].quiz,      
+                  postQuestion: response.data[key].quiz,
+                  answers: response.data[key].answers      
                 });
         
               }
@@ -51,17 +55,31 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts',
     }
 )
 
+export const addAnswer = createAsyncThunk('postQuestions/addAnswer',
+    async (values) => {
+        try {
+            const res = await axios.post('postansUrl', values);
+            return res.data
+        } catch (error) {
+            console.log(error)
+        }
+    }
+)
+
 export const postSlice = createSlice({
-    name: 'popostQuestionts',
+    name: 'postQuestionts',
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder.addCase(createNewPost.fulfilled, (state, action) => {
-        //     state.posts.push(action.payload);
-        state.posts=action.payload.posts
+            // state.posts.push(action.payload);
+        // state.posts=action.payload.posts
          });
         builder.addCase(fetchPosts.fulfilled, (state, action) => {
             state.posts = action.payload
+        });
+        builder.addCase(addAnswer.fulfilled, (state, action) => {
+            state.posts.answers.push(action.payload)
         })
     }
 });

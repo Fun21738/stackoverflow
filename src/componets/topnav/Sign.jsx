@@ -65,10 +65,11 @@ const validate = (values)=>{
         <div className='cont'>
             <h3 className='hd'>sign up for you better ways of in solving code problems</h3>
             <div className='inn'>
-           {/* { Object.keys(formErrors).length===0 && isSubmit ?(<div className='ui_massage_success'>Signed in successfully</div>):(
+           { Object.keys(formErrors).length===0 && isSubmit ?(<div className='ui_massage_success'>Signed in successfully</div>):(
             <div className='ui_massage_success>not successful'></div>
-           )} */}
+           )}
               <form onSubmit={handleSubmit}> 
+              
               <input type="text"  placeholder='username' className='one'
               name='username'
                  value={formValues.username}
@@ -97,7 +98,7 @@ const validate = (values)=>{
                  />
                   <p>{formErrors.confrimPassword}</p>
 
-                <button >Enter</button>
+                <button className='bt'>Enter</button>
               </form>
 
             </div>

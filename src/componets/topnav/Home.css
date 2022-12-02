@@ -5,12 +5,12 @@
  gap: 20px; 
  padding-top: 16px;
  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.2);
- height: 590px;
+ height: 75%;
  width: 160px;
  }
  .hp{
     text-decoration: none;
-    color: black;
+    color: rgb(0, 0, 255);
  }
  .bp{
     display: flex;
@@ -18,14 +18,28 @@
  .main{
     justify-content: center;
     width: 100%;
-    height: 595px;
+    height: 100%px;
     margin: 4px;
+    overflow: scroll;
+    scroll-behavior: auto;
  }
 .postee{
     margin-left: 38%;
+    
 }
+.posty{
+   margin-left: 38%;
+   color: rgba(0, 0, 255, 0.733);
+}
+
 .mag{
     border: 1px solid red;
+    background-color: #f0f0f0cc;;
     margin-top: 16px;
+    margin-left: 170px;
+    width: 70%;
+}
+.heady{
+   display: flex;
 }
     
