@@ -37,13 +37,14 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts',
     async () => {
         try {
             const response = await axios.get(url);
+            console.log({response});
             const dataArray=[]
             for(let key in response.data){
-
+                console.log({key});
                 dataArray.push({
         
-                  id: key,
-                  postQuestion: response.data[key].quiz,
+                  id: response.data[key].id,
+                  quiz: response.data[key].quiz,
                   answers: response.data[key].answers      
                 });
         

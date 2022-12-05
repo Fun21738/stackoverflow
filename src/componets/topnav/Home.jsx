@@ -7,22 +7,22 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import PostAnswer from "./PostAnswer";
-// import { RiHeart3Line } from "react-icons/ri";
-// import { HiThumbDown } from "react-icons/hi";
-// import { FaRegCommentDots } from "react-icons/fa";
+import { RiHeart3Line } from "react-icons/ri";
+import { HiThumbDown } from "react-icons/hi";
+import { FaRegCommentDots } from "react-icons/fa";
 import { fetchPosts } from "../features/Posts/postSlice";
 
-
 function Home() {
-  const  posts  = useSelector((state) => state.posts.posts);
-  console.log(posts);
-
-  console.log(posts);
+  const posts = useSelector((state) => state.posts.posts);
+  console.log({ posts });
   const dispatch = useDispatch();
+  const [OpenModal, setOpenModal] = useState(false);
 
-  const [OpenModal,setOpenModal] = useState (false)
+  const answers = useSelector((state) => state.posts.posts);
   
-  
+  console.log({ posts });
+  console.log(answers);
+  const [checked, setChecked] = React.useState(false);
 
   // const handleCommentPost = (id) => {
   //   dispatch(CommentPost(id));
@@ -65,37 +65,61 @@ function Home() {
             return (
               <div className="mag" key={post.id}>
                 <div className="heady">
-                    <h3 className="postee">posted question </h3>
-                    <p className="posty">answers <span>{0}</span></p>
+                  <h3 className="postee">posted question </h3>
+                  <p className="posty">
+                    answers <span>{post?.answers?.length}</span>
+                  </p>
                 </div>
-                    
-                        {post.postQuestion}
-                         <div className="icons">
-                          <button className="btn" onClick={()=>setOpenModal(true)}>post answer</button>
-                          <button className="btn">delete post</button>
-                          <div className="mode">
-                          <PostAnswer open={OpenModal} onClose={()=>setOpenModal(false)}/>
+
+                {post.quiz}
+                <div className="icons">
+                  <div className="mode">
+                    <PostAnswer
+                      post={post}
+                      posts={posts}
+                      open={OpenModal}
+                      onClose={() => setOpenModal(false)}
+                    />
+                  </div>
+
+                  <div className="ans">
+                    {post.answers?.map((answers) => {
+                      return (
+                        <div className="ans" key={answers.id}>
+                          <p>answers</p>
+                          <h5>{answers}</h5>
+
+                      <div className="lab">
+                      <div className="ico">
+                          <RiHeart3Line />
+                            <HiThumbDown />
+                            <FaRegCommentDots />
                           </div>
-                         
 
+                          <label>
+                            <input
+                              type="checkbox"
+                              defaultChecked={checked}
+                              onChange={() => setChecked(!checked)}
+                            />
+                            Check Me!
+                          </label>
+                      </div>
                          
+                        </div>
+                      );
+                    })}
+                  </div>
 
-                          {/* <div className="ico">
-                          <RiHeart3Line onClick={() => handleLikePost(post?.id)}/>
-                            <HiThumbDown onClick={() => handleDisikePost(post?.id)}/>
-                            <FaRegCommentDots onClick={() => handleCommentPost(post?.id)} />
-                          </div> */}
-                            
-                         </div>
-              </div>    
+                
+                </div>
+              </div>
             );
-             })}
-
+          })}
         </div>
       </div>
-
     </div>
   );
 }
 
-export default Home
+export default Home;

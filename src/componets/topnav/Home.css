@@ -42,4 +42,14 @@
 .heady{
    display: flex;
 }
-    
+    .ans{
+      border: 1px solid black;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      padding: 4px;
+    }
+.lab{
+   display: flex;
+   gap: 660px;
+}

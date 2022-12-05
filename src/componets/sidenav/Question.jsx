@@ -23,7 +23,7 @@ const Question = () => {
 //     // setQuestion("");
     
 // };
-const answers=['tdthdht']
+const answers=["sample answer"]
 
 const handleAddPost=(e)=>{
   e.preventDefault()
